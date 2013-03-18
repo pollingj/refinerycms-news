@@ -1,3 +1,5 @@
+require 'acts_as_indexed'
+
 module Refinery
   module News
     class Item < Refinery::Core::BaseModel
@@ -6,8 +8,7 @@ module Refinery
       translates :title, :body
 
       attr_accessor :locale # to hold temporarily
-
-      attr_accessible :title, :body, :content, :source, :publish_date, :expiration_date
+      attr_accessible :title, :body, :content, :source, :publish_date, :expiration_date, :image_id
       class Translation
         attr_accessible :locale
       end
@@ -18,6 +19,9 @@ module Refinery
       friendly_id :title, :use => [:slugged]
 
       acts_as_indexed :fields => [:title, :body]
+      
+      belongs_to :image
+      
 
       default_scope :order => "publish_date DESC"
 

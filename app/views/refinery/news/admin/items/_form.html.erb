@@ -32,6 +32,17 @@
     <%= f.text_field :source, :class => "larger widest" %>
   </div>
 
+<div class="field">
+  <%= f.label :image_id %>
+  <%= render :partial => "/refinery/admin/image_picker", :locals => {
+    :f => f,
+    :field => :image_id,
+    :image => f.object.image,
+    :toggle_image_display => false
+  }
+  %>
+</div>
+
   <%= render "/refinery/admin/form_actions",
              :f => f,
              :continue_editing => true,
